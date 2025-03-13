@@ -1,150 +1,129 @@
-<h1 align="center">
-  <br />
-  <img
-    src="./_docs/assets/icon.png"
-    alt="Mega Man Robots API"
-    width="150"
-  />
-  <br />
-  <b>Mega Man Robots API</b>
-  <br />
-  <sub
-    ><sup><b>(MEGA-MAN-ROBOTS)</b></sup></sub
-  >
-  <br />
-  <a
-    href="https://github.com/felipeAguiarCode/MegaApiDotnetCore/actions/workflows/build.yml"
-  >
-    <img
-      src="https://github.com/felipeAguiarCode/MegaApiDotnetCore/actions/workflows/build.yml/badge.svg"
-      alt=""
-    />
-  </a>
-  <a href="https://github.com/felipeAguiarCode/MegaApiDotnetCore/releases/latest">
-    <img
-      src="https://img.shields.io/github/v/release/felipeAguiarCode/MegaApiDotnetCore"
-      alt="Latest Release"
-    />
-  </a>
-</h1>
 
-<p align="center">
-  This .NET Core API is designed to serve JSON formatted data about bosses from
-  the Mega Man series. It is a backend service built with .NET Core 3.1 and
-  various modern dependencies for data management and API response handling.
-  <br />
-</p>
+# Megaman API
 
-<p align="center">
-  Developed with Entity Framework Core and other modern .NET technologies, this
-  project aims to provide a robust API for accessing Mega Man robot data.
-  <br />
-</p>
+Este projeto é um backend desenvolvido em .NET Core, criado para listar os dados dos bosses de *Mega Man* no formato JSON. O objetivo principal é fornecer uma API RESTful que retorne os dados dos robôs através de endpoints específicos.
 
-<p align="center">
-  <br />
-  <img src="./_docs/assets/carbon.png" />
-</p>
+## Endpoints da API
 
-## API Endpoints
+A API possui os seguintes endpoints:
 
-<table align="center">
-  <tr>
-    <th>Method</th>
-    <th>Endpoint</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>GET</td>
-    <td>/api/v1/robots</td>
-    <td>Returns a list of all robots</td>
-  </tr>
-  <tr>
-    <td>GET</td>
-    <td>/api/v1/robots/{id}</td>
-    <td>Returns details of a specific robot by ID</td>
-  </tr>
-  <tr>
-    <td>POST</td>
-    <td>/api/v1/robots</td>
-    <td>Endpoint to create a new robot entry</td>
-  </tr>
-</table>
+### 1. **GET /api/v1/robots**
+Retorna uma lista de todos os robôs (bosses de MegaMan).
 
-## Techniques Used
-
-<p align="center">
-  - <b>Entity Framework Core:</b> ORM for data management.<br />
-  - <b>RESTful API Design:</b> Ensures clear and effective communication
-  endpoints.<br />
-  - <b>Dependency Injection:</b> Used throughout to promote loose coupling and
-  enhanced testability.<br />
-</p>
-
-## Dependencies
-
-<table align="center">
-  <tr>
-    <th>Package</th>
-    <th>Version</th>
-    <th>Link</th>
-  </tr>
-  <tr>
-    <td>Microsoft.EntityFrameworkCore</td>
-    <td>3.1.8</td>
-    <td>
-      <a
-        href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.1.8"
-        >NuGet</a
-      >
-    </td>
-  </tr>
-  <tr>
-    <td>Microsoft.EntityFrameworkCore.Design</td>
-    <td>3.1.8</td>
-    <td>
-      <a
-        href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/3.1.8"
-        >NuGet</a
-      >
-    </td>
-  </tr>
-  <tr>
-    <td>Microsoft.EntityFrameworkCore.SqlServer</td>
-    <td>3.1.8</td>
-    <td>
-      <a
-        href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/3.1.8"
-        >NuGet</a
-      >
-    </td>
-  </tr>
-  <tr>
-    <td>Newtonsoft.Json</td>
-    <td>12.0.2</td>
-    <td>
-      <a href="https://www.nuget.org/packages/Newtonsoft.Json/12.0.2">NuGet</a>
-    </td>
-  </tr>
-</table>
-
-## :gear: Arch
-
-```🌐
-src
-├── 📂 Controllers      [Routes for endpoints]
-├── 📂 Models           [Database models]
-├── 📂 Services         [Business rules]
-├── 📂 Middlewares      [Intermediate functions between the HTTP request and the final server response]
-├── 📂 Database         [Structures related to the database]
-│   ├── 📂 DTOs             [Input Models and View Models (Data Transfer Objects)]
-│   ├── 📂 EntityFramework  [Files related to the ORM Entity Framework]
-│   │     ├── 📂 Context         [Entity context settings]
-│   │     ├── 📂 Migrations      [Migrations for database updates]
-│   ├── 📂 Repositories     [Repository pattern]
+**Exemplo de resposta:**
+```json
+[
+  {
+    "Id": 1,
+    "Code": "DLN/DRN-003",
+    "Name": "Cutman",
+    "HP": 150,
+    "Picture": "https://vignette.wikia.nocookie.net/megaman/images/2/22/Cutman.png"
+  },
+  {
+    "Id": 2,
+    "Code": "DLN/DRN-004",
+    "Name": "Gutsman",
+    "HP": 200,
+    "Picture": "https://vignette.wikia.nocookie.net/megaman/images/a/a6/GutsMan.png"
+  }
+]
 ```
 
-## License This software is licensed under the terms of the [MIT]
+### 2. **GET /api/v1/robots/{id}**
+Retorna os dados de um robô específico com base no ID.
 
-⌨️ FelipeAguiar -
-[Github](https://github.com/felipeAguiarCode)
+**Exemplo de resposta:**
+```json
+{
+  "Id": 1,
+  "Code": "DLN/DRN-003",
+  "Name": "Cutman",
+  "HP": 150,
+  "Picture": "https://vignette.wikia.nocookie.net/megaman/images/2/22/Cutman.png"
+}
+```
+
+Se o robô não for encontrado, retorna:
+```json
+{
+  "message": "Nenhum robô encontrado"
+}
+```
+
+### 3. **POST /api/v1/robots**
+Este endpoint é utilizado para enviar dados de um robô, mas ainda não possui implementação completa. Atualmente, responde com um status 200 OK.
+
+---
+
+## Dependências
+
+O projeto faz uso das seguintes dependências:
+
+| Dependência                        | Descrição                                      |
+|-------------------------------------|------------------------------------------------|
+| [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) | Framework para ORM (Object-Relational Mapper) para interagir com o banco de dados. |
+| [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer) | Provedor do Entity Framework Core para bancos de dados SQL Server. |
+| [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) | Ferramentas de design para Entity Framework Core, utilizadas para scaffolding de banco de dados. |
+| [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json) | Biblioteca popular para manipulação de JSON no .NET. |
+
+---
+
+## Estrutura do Projeto
+
+A estrutura de pastas do projeto é a seguinte:
+
+```
+.vs
+.vscode
+bin
+Controllers
+  └── RobotsController.cs
+Database
+  └── RobotContext.cs
+middlewares
+  └── CustomMiddleware.cs
+Models
+  └── Robot.cs
+obj
+Properties
+Services
+  └── IRobotServices.cs
+  └── RobotServices.cs
+appsettings.Development.json
+appsettings.json
+global.json
+MegamanApi.csproj
+MegamanApi.sln
+Program.cs
+Startup.cs
+```
+
+- **.vs, .vscode**: Arquivos de configuração de ambiente para Visual Studio e Visual Studio Code, respectivamente.
+- **bin**: Diretório onde os arquivos binários compilados são gerados.
+- **Controllers**: Contém os controladores da API. Exemplo: `RobotsController.cs` define os endpoints da API.
+- **Database**: Contém classes relacionadas ao banco de dados. Exemplo: `RobotContext.cs` define o contexto de acesso aos dados.
+- **middlewares**: Contém middlewares personalizados. Exemplo: `CustomMiddleware.cs` pode ser utilizado para interceptar requisições.
+- **Models**: Contém os modelos de dados. Exemplo: `Robot.cs` define a estrutura de um robô.
+- **obj**: Diretório onde arquivos temporários de compilação são armazenados.
+- **Properties**: Contém arquivos de configuração do projeto, como `launchSettings.json`.
+- **Services**: Contém serviços que implementam a lógica de negócios. Exemplo: `RobotServices.cs` implementa as operações de busca dos robôs.
+- **appsettings.Development.json**: Arquivo de configuração para o ambiente de desenvolvimento.
+- **appsettings.json**: Arquivo de configuração principal.
+- **global.json**: Configuração global para o SDK do .NET.
+- **MegamanApi.csproj**: Arquivo de projeto do .NET.
+- **MegamanApi.sln**: Arquivo de solução do Visual Studio.
+- **Program.cs**: Ponto de entrada do aplicativo.
+- **Startup.cs**: Contém configurações de inicialização e middleware do aplicativo.
+
+---
+
+## Técnicas Utilizadas
+
+- **API RESTful**: O projeto segue a arquitetura RESTful para fornecer acesso aos dados dos robôs.
+- **Entity Framework Core**: Utilizado para interagir com o banco de dados.
+- **Dependency Injection**: O serviço `IRobotServices` é injetado no controlador para promover uma melhor separação de responsabilidades.
+- **DTO (Data Transfer Object)**: A API retorna objetos DTO para representar os dados dos robôs de forma mais simples e estruturada.
+- **Middleware Personalizado**: Embora não implementado neste momento, há um diretório `middlewares` onde middlewares personalizados podem ser adicionados para tratamento de requisições.
+
+---
